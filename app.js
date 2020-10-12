@@ -6,7 +6,10 @@
 // })
 
 // to output the data in the page, we gotta reference the ul's id of cafe-list
-const cafeList = document.getElementById("cafe-list")
+const cafeList = document.getElementById("cafe-list") // alternatively, can use doc.querySelector("#cafe-list")
+
+// grab form id from index.html
+const form = document.getElementById("add-cafe-form")
 
 // create element & render cafe
 function renderCafe(doc) {
@@ -31,4 +34,16 @@ db.collection('cafes').get().then((snapshot) => {
     snapshot.docs.forEach(doc => {
         renderCafe(doc)
     })
+})
+
+// saving data to firestore
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    db.collection('cafes').add({
+        name: form.name.value,
+        city: form.city.value
+    });
+    // to clear out fields after adding
+    form.name.value = '';
+    form.city.value = '';
 })
