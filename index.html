@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-app.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learning Firestore</title>
+    <title>Cloud Nin9s</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Cloud Cafe</h1>
@@ -12,6 +14,34 @@
         <form id="add-cafe-form"></form>
         <ul id="cafe-list"></ul>
     </div>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-analytics.js"></script>
+
+    <script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+        apiKey: "AIzaSyAQljY40rXuMNX2cOuQQPw-zP44VNVza-k",
+        authDomain: "cloud-cafe-base.firebaseapp.com",
+        databaseURL: "https://cloud-cafe-base.firebaseio.com",
+        projectId: "cloud-cafe-base",
+        storageBucket: "cloud-cafe-base.appspot.com",
+        messagingSenderId: "672682619321",
+        appId: "1:672682619321:web:56a137d6f610e04dca4668",
+        measurementId: "G-G1210J7EC4"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore(); // this is a reference to our db in firestore... moving forward, to interact w/ firebase's database, need to use the variable db
+
+    db.settings({ timestampsInSnapshots: true }) // to prevent errors/warnings in console when working w/ db
+    firebase.analytics();
+    </script>
 
     <script src="app.js"></script>
     
