@@ -16,17 +16,28 @@ function renderCafe(doc) {
     let li = document.createElement('li')
     let name = document.createElement('span')
     let city = document.createElement('span')
+    // creating element for deleting
+    let cross = document.createElement('div')
 
     li.setAttribute('data-id', doc.id) // to get the document's ID from firestore
+    // setting the text contents for the elts we created
     name.textContent = doc.data().name
     city.textContent = doc.data().city
+    cross.textContent = 'x'
 
     // next, gotta append the name & city to the li
     li.appendChild(name)
     li.appendChild(city)
+    li.appendChild(cross)
 
     // lastly, gotta append the li we created to the ul element of cafeList
     cafeList.appendChild(li)
+
+    // deleting data
+    cross.addEventListener('click', (e) => {
+        let id = e.target.parentElement.getAttribute("data-id") // note that this 'data-id' is actually the doc.id... ref line 22
+        db.collection('cafes').doc(id).delete()
+    })
 }
 
 // to get the actual data in a doc...
